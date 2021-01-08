@@ -1,11 +1,12 @@
+mod deck;
 mod card;
 
-use crate::card::{Card, Suit};
+use crate::deck::Deck;
 
 fn main() {
-    let card = Card {
-        suit: Suit::Clubs,
-        value: 12,
-    };
-    println!("Your card is: {}", card);
+    let mut deck = Deck::new();
+    deck.shuffle();
+    println!("{}", deck);
+    deck.shuffle();
+    println!("{}", deck);
 }

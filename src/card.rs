@@ -1,10 +1,19 @@
 use std::fmt;
+use std::slice::Iter;
 
+#[derive(Copy, Clone)]
 pub enum Suit {
     Clubs,
     Diamonds,
     Hearts,
     Spades
+}
+
+impl Suit {
+    pub fn iterator() -> Iter<'static, Suit>{
+        static SUITS: [Suit; 4] = [Suit::Clubs, Suit::Diamonds, Suit::Hearts, Suit::Spades];
+        SUITS.iter()
+    }
 }
 
 impl fmt::Display for Suit {
@@ -21,6 +30,12 @@ impl fmt::Display for Suit {
 pub struct Card {
     pub suit: Suit,
     pub value: u8
+}
+
+impl Card {
+    pub fn new(suit: Suit, value: u8) -> Card {
+        Card {suit, value}
+    }
 }
 
 impl fmt::Display for Card {
