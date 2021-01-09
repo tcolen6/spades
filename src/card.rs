@@ -1,32 +1,9 @@
 use std::fmt;
-use std::slice::Iter;
+use core::cmp::Ord;
+use std::cmp::Ordering;
+use crate::suit::Suit;
 
-#[derive(Copy, Clone)]
-pub enum Suit {
-    Clubs,
-    Diamonds,
-    Hearts,
-    Spades
-}
-
-impl Suit {
-    pub fn iterator() -> Iter<'static, Suit>{
-        static SUITS: [Suit; 4] = [Suit::Clubs, Suit::Diamonds, Suit::Hearts, Suit::Spades];
-        SUITS.iter()
-    }
-}
-
-impl fmt::Display for Suit {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        match self {
-            Suit::Clubs => write!(f, "C"),
-            Suit::Diamonds => write!(f, "D"),
-            Suit::Hearts => write!(f, "H"),
-            Suit::Spades => write!(f, "S"),
-        }
-    }
-}
-
+#[derive(Copy, Clone, Eq)]
 pub struct Card {
     pub suit: Suit,
     pub value: u8
@@ -35,6 +12,28 @@ pub struct Card {
 impl Card {
     pub fn new(suit: Suit, value: u8) -> Card {
         Card {suit, value}
+    }
+}
+
+impl PartialEq for Card {
+    fn eq(&self, other: &Self) -> bool {
+        self.suit == other.suit && self.value == other.value
+    }
+}
+
+impl PartialOrd for Card {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+impl Ord for Card {
+    fn cmp(&self, other: &Self) -> Ordering {
+        if self.suit == other.suit {
+            self.value.cmp(&other.value)
+        }  else {
+            self.suit.cmp(&other.suit)
+        }
     }
 }
 
