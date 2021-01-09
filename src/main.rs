@@ -1,9 +1,4 @@
-mod deck;
-mod card;
-mod suit;
-mod hand;
-
-use crate::deck::Deck;
+use playing_cards::deck::Deck;
 
 fn main() {
     let mut deck = Deck::new();

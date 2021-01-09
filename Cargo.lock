@@ -24,6 +24,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "89203f3fba0a3795506acaad8ebce3c80c0af93f994d5a1d7a0b1eeb23271929"
 
 [[package]]
+name = "playing-cards"
+version = "0.1.0"
+dependencies = [
+ "rand",
+]
+
+[[package]]
 name = "ppv-lite86"
 version = "0.2.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -73,6 +80,7 @@ dependencies = [
 name = "spades"
 version = "0.1.0"
 dependencies = [
+ "playing-cards",
  "rand",
 ]
 
