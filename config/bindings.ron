@@ -1,0 +1,8 @@
+(
+    axes: {},
+    actions: {
+        "select": [[Key(Space)]],
+        "left": [[Key(Left)]],
+        "right": [[Key(Right)]],
+    },
+)
